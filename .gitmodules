@@ -1,0 +1,6 @@
+[submodule "references/mls-protocol"]
+	path = references/mls-protocol
+	url = https://github.com/mlswg/mls-protocol.git
+[submodule "references/openmls"]
+	path = references/openmls
+	url = https://github.com/openmls/openmls.git
