@@ -16,11 +16,32 @@ Hoth Nexus is an end-to-end encrypted workspace for team communication and colla
 
 These principles are product constraints. A good idea that breaks them is not a good fit for Hoth.
 
+## End-to-end encryption (E2EE)
+
+End-to-end encryption means content is encrypted on the sender’s device and can be decrypted only by the intended recipients’ authorized devices. Servers may route and store ciphertext, but they should never receive the content keys or plaintext.
+
+### Encryption algorithms
+
+An encryption algorithm is a mathematical procedure that uses a key to transform readable plaintext into unreadable ciphertext and uses the corresponding key to recover the plaintext. E2EE systems commonly use symmetric encryption algorithms such as AES-256-GCM or ChaCha20-Poly1305 to protect messages and files. Post-quantum cryptography uses quantum-resistant public-key algorithms such as ML-KEM to establish encryption keys, while symmetric algorithms such as AES-256 remain suitable with appropriately sized keys.
+
+### Key-agreement algorithms
+
+A key-agreement algorithm allows two parties to derive the same secret encryption key over an untrusted network without sending that secret key to each other.
+
+## MLS protocol and OpenMLS
+
+Messaging Layer Security (MLS) is a public standard for asynchronous end-to-end encrypted group communication. It is defined in [RFC 9420](https://www.rfc-editor.org/rfc/rfc9420.html), with supporting architecture in [RFC 9750](https://www.rfc-editor.org/rfc/rfc9750.html).
+
+MLS improves how key agreement scales for groups by arranging key material in a ratchet tree, allowing the group to refresh its shared secret without establishing a separate key between every pair of members. Each membership change creates a new epoch with fresh keys, providing forward secrecy and post-compromise security efficiently even for large groups.
+
+[OpenMLS](https://github.com/openmls/openmls) is a public Rust implementation of MLS. This repository includes the public MLS specification source and OpenMLS as references:
+
+- `references/mls-protocol`
+- `references/openmls`
+
 ## The product problem
 
-With end-to-end encryption (E2EE), content is encrypted before it leaves a user’s device and can only be read by the intended people and their authorized devices. The server moves and stores encrypted data, but should not have the keys needed to read it.
-
-That changes the architecture of the product. The system must safely handle keys. It must handle new members, removed members, multiple devices, lost devices, and compromised devices without quietly giving the server access to customer content.
+E2EE changes the architecture of the product. The system must safely handle keys, new and removed members, multiple devices, lost devices, and compromised devices without quietly giving the server access to customer content.
 
 E2EE creates real product tradeoffs. Features such as search, history, recovery, notifications, AI, and third-party integrations are easier when a server can read customer data. Keeping that data private can make those features harder, slower, more expensive, or less convenient.
 
@@ -39,19 +60,6 @@ For each idea:
 7. Name the main risks, unknowns, and signs that the decision is working.
 
 If the idea uses AI or an outside integration, also explain what information it needs, where that information goes, who can read it, how long it is kept, and what happens if the outside service is compromised or removed.
-
-## MLS and OpenMLS
-
-Messaging Layer Security (MLS) is a public standard for encrypted group communication. It is defined in [RFC 9420](https://www.rfc-editor.org/rfc/rfc9420.html), with supporting architecture in [RFC 9750](https://www.rfc-editor.org/rfc/rfc9750.html).
-
-[OpenMLS](https://github.com/openmls/openmls) is a public Rust implementation of MLS. This repository includes the public MLS specification source and OpenMLS as references:
-
-- `references/mls-protocol`
-- `references/openmls`
-
-MLS handles important group-encryption problems, but it is not a complete product. A Nexus feature must also consider identity, devices, key storage, backups, recovery, metadata, notifications, software updates, and user experience.
-
-No Hoth source repository or internal documentation is included here.
 
 ## Deliverable
 
