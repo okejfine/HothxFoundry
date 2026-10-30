@@ -69,6 +69,8 @@ The main deliverable is a short strategy memo that includes:
 
 A working proof of concept built on OpenMLS is a bonus. It should test the riskiest or most important part of the recommendation using real MLS group and key behavior. It does not need to be production-ready, but it should work well enough to show whether the idea is technically and practically believable.
 
+All PoCs should be verifiably end to end encrypted.
+
 Work in teams of two when possible.
 
 ## Getting the public references
