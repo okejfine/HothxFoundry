@@ -63,6 +63,8 @@ If the idea uses AI or an outside integration, also explain what information it 
 
 ## Deliverable
 
+Treat this like a case study problem. Make a recommendation on company strategy on AI integrations into E2EE products / features. 
+Consider the constraints, future outlook on impact of AI on software products and data exposure to vendors. 
 The main deliverable is a short strategy memo that includes:
 
 - the product question;
@@ -72,6 +74,8 @@ The main deliverable is a short strategy memo that includes:
 - the privacy, sovereignty, and security tradeoffs;
 - the role and limits of AI or integrations;
 - the main risks, unknowns, and next steps.
+
+Sample question could be something like, "Should an E2EE product have AI integrations? If yes, why, what and how? If no, why not?"
 
 ## Bonus: working prototype
 
